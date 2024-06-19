@@ -4,6 +4,7 @@
 ![MongoDB](https://img.shields.io/badge/mongodb-6DA55F?style=for-the-badge&logo=mongodb&logoColor=white)
 ![JEST](https://img.shields.io/badge/jest-6DA55F?style=for-the-badge&logo=jest&logoColor=white)
 
+
 ## Requisitos do Projeto
 
 ### Funcionalidades da API:
