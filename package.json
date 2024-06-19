@@ -1,0 +1,19 @@
+{
+  "name": "testing_with_jest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2",
+    "jest": "^29.7.0",
+    "mongoose": "^8.4.3",
+    "supertest": "^7.0.0"
+  }
+}
