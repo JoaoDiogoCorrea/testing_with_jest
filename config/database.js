@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
 
-const connectDB = async () => {
+const connectDB = async (dbUri) => {
   try {
-    await mongoose.connect('mongodb://localhost:27017/productCatalog');
+    await mongoose.connect(dbUri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
     console.log('MongoDB connected');
   } catch (err) {
     console.error(err.message);

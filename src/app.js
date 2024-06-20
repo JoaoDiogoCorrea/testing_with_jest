@@ -5,9 +5,13 @@ const productRoutes = require('./routes/productRoutes');
 
 const app = express();
 
-connectDB();
+const initializeServer = async (dbUri) => {
+  await connectDB(dbUri);
 
-app.use(bodyParser.json());
-app.use('/products', productRoutes);
+  app.use(bodyParser.json());
+  app.use('/products', productRoutes);
 
-module.exports = app;
+  return app;
+};
+
+module.exports = initializeServer;
