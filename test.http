@@ -9,12 +9,17 @@ content-type: application/json
 
 ###
 
-GET http://localhost:8000/products/:_id HTTP/1.1
+GET http://localhost:8000/products/66745e7799b9cfae1bb03f26 HTTP/1.1
 content-type: application/json
 
 ###
 
 GET http://localhost:8000/products HTTP/1.1
+content-type: application/json
+
+###
+
+DELETE  http://localhost:8000/products/6674634d7f9343cfcc7a7ade HTTP/1.1
 content-type: application/json
 
 ###

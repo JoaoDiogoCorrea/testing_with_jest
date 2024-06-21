@@ -14,8 +14,13 @@ const getProducts = async () => {
   return await Product.find();
 }
 
+const deleteProduct = async (id) => {
+  return await Product.findByIdAndDelete(id);
+}
+
 module.exports = {
   createProduct,
   getProductById,
-  getProducts
+  getProducts,
+  deleteProduct
 };

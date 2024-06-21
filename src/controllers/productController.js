@@ -32,12 +32,23 @@ const getProducts = async (req, res) => {
   }catch (err) {
     res.status(500).json({ error: err.message });
   }
-
 }
 
+const deleteProduct = async (req, res) => {
+  try {
+    const product = await productService.deleteProduct(req.params.id);
+    if(!product) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+    res.status(204).send();
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+} 
 
 module.exports = {
   createProduct,
   getProductById,
-  getProducts
+  getProducts,
+  deleteProduct
 };
