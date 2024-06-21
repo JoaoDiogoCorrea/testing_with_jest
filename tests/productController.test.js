@@ -8,15 +8,22 @@ const DB_URI_TEST = 'mongodb://localhost:27017/productCatalogTest';
 let app;
 
 describe('Product API', () => {
+  // Executado antes de todos os testes
   beforeAll(async () => {
     app = await initializeServer(DB_URI_TEST);
     await mongoose.connection.db.dropDatabase();
   });
 
-  /* afterAll(async () => {
-    await mongoose.connection.db.dropDatabase();
-    await mongoose.connection.close();
-  }); */
+  // Executado depois de todos os testes
+  afterAll(async () => {
+    await mongoose.connection.db.dropDatabase(); // Limpa o banco de dados de teste
+    await mongoose.connection.close(); // Fecha a conexão com o banco de dados
+  });
+
+  // Executado antes de cada teste
+  beforeEach(async () => {
+    await mongoose.connection.db.dropDatabase(); // Limpa o banco de dados de teste
+  });
 
   it('should create a new product', async () => {
     const res = await request(app)
@@ -32,5 +39,5 @@ describe('Product API', () => {
     expect(res.body).toHaveProperty('name', 'Test Product');
   });
 
-  
+
 });
