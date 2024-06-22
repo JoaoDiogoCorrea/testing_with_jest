@@ -37,6 +37,37 @@ describe('Product API', () => {
     expect(res.statusCode).toEqual(201);
     expect(res.body).toHaveProperty('_id');
     expect(res.body).toHaveProperty('name', 'Test Product');
+    expect(res.body).toHaveProperty('price', 100);
+  });
+
+  it('should create a new product without description', async () => {
+    const res = await request(app)
+      .post('/products')
+      .send({
+        name: 'Test Product',
+        price: 100,
+      });
+
+    expect(res.statusCode).toEqual(201);
+    expect(res.body).toHaveProperty('_id');
+    expect(res.body).toHaveProperty('name', 'Test Product');
+    expect(res.body).toHaveProperty('price', 100);
+  });
+
+  it('not should create a new product with price empty', async () => {
+    const res = await request(app)
+      .post('/products')
+      .send({ price: 100});
+
+    expect(res.statusCode).toEqual(500);
+  });
+
+  it('not should create a new product with name empty', async () => {
+    const res = await request(app)
+      .post('/products')
+      .send({ name: 'Test Product'});
+
+    expect(res.statusCode).toEqual(500);
   });
 
   it('should fetch all products', async () => {
