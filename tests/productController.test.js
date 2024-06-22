@@ -47,20 +47,26 @@ describe('Product API', () => {
     expect(res.body).toBeInstanceOf(Array);
   });
 
-  it('should delete a product', async () => {
-    const product = new Product({ name: 'Test Product 4', price: 400, description: 'Este produto vai ser deletado' });
+  it('should update a product', async () => {
+    const product = new Product({ name: 'Produto para ser alterado', price: 400, description: 'Este produto vai ser alterado' });
     await product.save();
 
-    const res = await request(app).delete(`/products/${product._id}`);
-    expect(res.statusCode).toEqual(204);
+    const res = await request(app)
+      .put(`/products/${product._id}`)
+      .send({ name: 'Produto Alterado', price: 410, description: 'Este produto foi alterado' });
+
+    expect(res.statusCode).toEqual(200);
+    expect(res.body).toHaveProperty('name', 'Produto Alterado');
+    expect(res.body).toHaveProperty('price', 410);
+    expect(res.body).toHaveProperty('description', 'Este produto foi alterado' );
   });
 
-  it ('should delete a product', async () => {
+  it('should delete a product', async () => {
     const product = new Product({ name: 'Produto para ser deletado', price: 400, description: 'Este produto vai ser deletado' });
     await product.save();
-    
+
     const res = await request(app).delete(`/products/${product._id}`);
-    
+
     expect(res.statusCode).toEqual(204);
   });
 
