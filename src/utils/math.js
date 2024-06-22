@@ -7,6 +7,9 @@ function sum(a, b) {
 }
 
 function sumValues(obj) {
+  if (obj.leght === 0) {
+    throw new Error('The object is empty');
+  }
   const value = obj.reduce((result, amount) => {
     return (result + amount);
   }, 0);
