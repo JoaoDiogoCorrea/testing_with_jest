@@ -111,5 +111,16 @@ describe('Product API', () => {
     expect(res.body).toHaveProperty('totalValue', 600);
   });
 
+  it('should delete a product and it should no longer exist', async () => {
+    const product = new Product({ name: 'Product to Delete', price: 100 });
+    await product.save();
+  
+    const res = await request(app).delete(`/products/${product._id}`);
+    expect(res.statusCode).toEqual(204);
+  
+    const productCheck = await Product.findById(product._id);
+    expect(productCheck).toBeNull();
+  });
+
 
 });
