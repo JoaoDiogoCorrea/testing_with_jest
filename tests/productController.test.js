@@ -101,5 +101,15 @@ describe('Product API', () => {
     expect(res.statusCode).toEqual(204);
   });
 
+  it('should calculate the total value of products', async () => {
+    await new Product({ name: 'Product 1', price: 100 }).save();
+    await new Product({ name: 'Product 2', price: 200 }).save();
+    await new Product({ name: 'Product 3', price: 300 }).save();
+
+    const res = await request(app).get('/products/totalValue');
+    expect(res.statusCode).toEqual(200);
+    expect(res.body).toHaveProperty('totalValue', 600);
+  });
+
 
 });

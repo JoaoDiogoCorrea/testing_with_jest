@@ -22,10 +22,16 @@ const deleteProduct = async (id) => {
   return await Product.findByIdAndDelete(id);
 }
 
+const getTotalValue = async () => {
+  const products = await Product.find();
+  return products.reduce((total, product) => total + product.price, 0);
+};
+
 module.exports = {
   createProduct,
   getProductById,
   getProducts,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  getTotalValue
 };

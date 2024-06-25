@@ -2,19 +2,19 @@ POST http://localhost:8000/products/ HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Produto 4",
-    "price": 102,
+    "name": "Produto 6",
+    "price": 107,
     "description": "Produto 4 descrição"
 }
 
 ###
 
-GET http://localhost:8000/products/66745e7799b9cfae1bb03f26 HTTP/1.1
+GET http://localhost:8000/products HTTP/1.1
 content-type: application/json
 
 ###
 
-GET http://localhost:8000/products HTTP/1.1
+GET http://localhost:8000/products/66745e7799b9cfae1bb03f26 HTTP/1.1
 content-type: application/json
 
 ###
@@ -28,9 +28,14 @@ PUT  http://localhost:8000/products/6676e9b9086ad4f50c37d1c9 HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Produto 232",
-    "price": 101,
+    "name": "Produto 232s",
+    "price": 1012,
     "description": "Produto 4 descrição"
 }
+
+###
+
+GET http://localhost:8000/products/totalValue HTTP/1.1
+content-type: application/json
 
 ###

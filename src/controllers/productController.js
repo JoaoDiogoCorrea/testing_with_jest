@@ -57,10 +57,20 @@ const deleteProduct = async (req, res) => {
   }
 }
 
+const getTotalValue = async (req, res) => {
+  try {
+    const totalValue = await productService.getTotalValue();
+    res.status(200).json({ totalValue });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 module.exports = {
   createProduct,
   getProductById,
   getProducts,
   deleteProduct,
-  updateProduct
+  updateProduct,
+  getTotalValue
 };
