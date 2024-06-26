@@ -102,9 +102,9 @@ describe('Product API', () => {
   });
 
   it('should calculate the total value of products', async () => {
-    await new Product({ name: 'Product 1', price: 100 }).save();
-    await new Product({ name: 'Product 2', price: 200 }).save();
-    await new Product({ name: 'Product 3', price: 300 }).save();
+    await new Product({ name: 'Produto 1', price: 100 }).save();
+    await new Product({ name: 'Produto 2', price: 200 }).save();
+    await new Product({ name: 'Produto 3', price: 300 }).save();
 
     const res = await request(app).get('/products/totalValue');
     expect(res.statusCode).toEqual(200);
@@ -112,7 +112,7 @@ describe('Product API', () => {
   });
 
   it('should delete a product and it should no longer exist', async () => {
-    const product = new Product({ name: 'Product to Delete', price: 100 });
+    const product = new Product({ name: 'Produto para Deletar', price: 100 });
     await product.save();
   
     const res = await request(app).delete(`/products/${product._id}`);
@@ -122,5 +122,17 @@ describe('Product API', () => {
     expect(productCheck).toBeNull();
   });
 
+  it('should return error if product price is negative', async () => {
+    const res = await request(app)
+      .post('/products')
+      .send({
+        name: 'Produto inválido',
+        price: -100,
+        description: 'Este produto é inválido'
+      });
+  
+    expect(res.statusCode).toEqual(500);
+    expect(res.body).toHaveProperty('error');
+  });
 
 });

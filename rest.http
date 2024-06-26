@@ -3,7 +3,7 @@ content-type: application/json
 
 {
     "name": "Produto 6",
-    "price": 107,
+    "price": -1107,
     "description": "Produto 4 descrição"
 }
 
